@@ -1,21 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { ChangeEvent, useState } from 'react'
 
 import "./app.scss";
+import BottomSection from './components/BottomSection';
+import FilterSetion from './components/FilterSection';
+import ProductsGrid from './components/ProductsGrid';
+import TopSection from './components/TopSection';
 
 function App() {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  function getSearchQuery (event: ChangeEvent<HTMLInputElement>) {setSearchQuery(event.target.value)}
 
   return (
     <>
       <div className='big-container '>
-        <div className='top-container'></div>
+        <TopSection getSearchQuery={getSearchQuery} />
         <div className='middle-container'>
-          <div className='middle-left-container'></div>
-          <div className='middle-right-container'></div>
+          <FilterSetion />
+          <ProductsGrid searchQuery={searchQuery}  />
         </div>
-        <div className='bottom-container'>
-        </div>
+        <BottomSection />
       </div>
     </>
   )
